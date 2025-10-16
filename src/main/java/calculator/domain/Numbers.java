@@ -1,4 +1,4 @@
 package calculator.domain;
 
-public class Calculator {
+public class Numbers {
 }
