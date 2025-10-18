@@ -14,7 +14,7 @@ public class CalculatorService {
         String customDelimiter = findCustomDelimiter(input);
         List<Integer> numbers;
         if(customDelimiter == null || customDelimiter.isEmpty()) {
-            numbers  = Arrays.stream(input.split(BASIC_DELIMITER))
+            numbers = Arrays.stream(input.split(BASIC_DELIMITER))
                     .map(Integer::parseInt)
                     .toList();
             return numbers;
