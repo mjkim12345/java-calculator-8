@@ -7,4 +7,8 @@ public class OutputView {
     public void output(int total) {
         System.out.println(OUTPUT_MESSAGE + total);
     }
+
+    public void printError(String message) {
+        System.out.println(message);
+    }
 }

@@ -20,9 +20,14 @@ public class CalculatorController {
     }
 
     public void run() {
-        String input = inputView.input();
-        List<Integer> numberList = calculatorService.parseNumbers(input);
-        Numbers numbers = new Numbers(numberList);
-        outputView.output(numbers.sum());
+        try {
+            String input = inputView.input();
+            List<Integer> numberList = calculatorService.parseNumbers(input);
+            Numbers numbers = new Numbers(numberList);
+            outputView.output(numbers.sum());
+        } catch (IllegalArgumentException e){
+            outputView.printError("잘못된 입력입니다.");
+            return;
+        }
     }
 }
