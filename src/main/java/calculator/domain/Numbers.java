@@ -18,11 +18,9 @@ public class Numbers {
         }
     }
 
-    public int sum(List<Integer> numbers) {
-        int total=0;
-        for (Integer number : numbers) {
-            total += number;
-        }
-        return total;
+    public int sum() {
+        return numbers.stream()
+                .mapToInt(Integer::intValue)
+                .sum();
     }
 }

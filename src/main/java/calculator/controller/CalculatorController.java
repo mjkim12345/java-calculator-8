@@ -21,10 +21,8 @@ public class CalculatorController {
 
     public void run() {
         String input = inputView.input();
-        List<Integer> validatedNumbers = calculatorService.validateInputString(input);
-        Numbers numbers = new Numbers(validatedNumbers);
-        outputView.output(numbers.sum(validatedNumbers));
+        List<Integer> numberList = calculatorService.parseNumbers(input);
+        Numbers numbers = new Numbers(numberList);
+        outputView.output(numbers.sum());
     }
-
-
 }

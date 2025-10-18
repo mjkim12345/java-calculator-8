@@ -10,7 +10,7 @@ public class CalculatorService {
     private static final String START_CUSTOM_DELIMITER = "//";
     private static final String END_CUSTOM_DELIMITER = "\\n";
 
-    public List<Integer> validateInputString(String input) {
+    public List<Integer> parseNumbers(String input) {
         String customDelimiter = findCustomDelimiter(input);
         List<Integer> numbers;
         if(customDelimiter == null || customDelimiter.isEmpty()) {
