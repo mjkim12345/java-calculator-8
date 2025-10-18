@@ -11,6 +11,10 @@ public class CalculatorService {
     private static final String END_CUSTOM_DELIMITER = "\\n";
 
     public List<Integer> parseNumbers(String input) {
+
+        if(input.equals("")){
+            return List.of();
+        }
         String customDelimiter = findCustomDelimiter(input);
         List<Integer> numbers;
         if(customDelimiter == null || customDelimiter.isEmpty()) {
