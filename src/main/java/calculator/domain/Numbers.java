@@ -3,19 +3,26 @@ package calculator.domain;
 import java.util.List;
 
 public class Numbers {
-    private List<Integer> numbers;
-    private int numberSum;
+    private final List<Integer> numbers;
 
     public Numbers(List<Integer> numbers) {
+        validate(numbers);
         this.numbers = numbers;
-        numberSum = sum(numbers);
     }
 
-    private int sum(List<Integer> numbers) {
-        int result = 0;
-        for (Integer number : numbers) {
-            result += number;
+    private void validate(List<Integer> numbers) {
+        for(Integer number : numbers) {
+            if(number < 0) {
+                throw new IllegalArgumentException();
+            }
         }
-        return result;
+    }
+
+    public int sum(List<Integer> numbers) {
+        int total=0;
+        for (Integer number : numbers) {
+            total += number;
+        }
+        return total;
     }
 }
