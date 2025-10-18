@@ -20,7 +20,7 @@ public class CalculatorService {
             return numbers;
         }
         String refactoredInput = input.substring(
-                input.lastIndexOf(END_CUSTOM_DELIMITER+2));
+                input.lastIndexOf(END_CUSTOM_DELIMITER)+2);
         numbers = Arrays.stream(refactoredInput.split(BASIC_DELIMITER + "|" + customDelimiter))
                 .map(Integer::parseInt)
                 .toList();
@@ -29,7 +29,7 @@ public class CalculatorService {
 
     private String findCustomDelimiter(String input) {
         if(input.contains(START_CUSTOM_DELIMITER) && input.contains(END_CUSTOM_DELIMITER)) {
-                int index1 = input.indexOf(START_CUSTOM_DELIMITER) + 2;
+                int index1 = input.indexOf(START_CUSTOM_DELIMITER)+2;
                 int index2 = input.lastIndexOf(END_CUSTOM_DELIMITER);
 
                 StringBuffer sb = new StringBuffer();
@@ -40,6 +40,4 @@ public class CalculatorService {
             }
         return null;
     }
-
-
 }
