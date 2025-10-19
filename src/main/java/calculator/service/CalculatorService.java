@@ -26,7 +26,7 @@ public class CalculatorService {
                         .toList();
                 return numbers;
             } catch (Exception e) {
-                throw new IllegalArgumentException("잘못된 문자열 형태");
+                throw new IllegalArgumentException("입력 형식이 잘못되었습니다.");
             }
         }
         String refactoredInput = input.substring(
@@ -43,17 +43,17 @@ public class CalculatorService {
                 int endIdx = input.lastIndexOf(END_CUSTOM_DELIMITER);
 
                 if(endIdx <0 || endIdx < startIdx) {
-                    throw new IllegalArgumentException("잘못된 커스텀 구분자");
+                    throw new IllegalArgumentException("커스텀 구분자 사용이 잘못되었습니다.");
                 }
 
                 String delimiter = input.substring(startIdx, endIdx);
 
                 if(delimiter.length() != 1){
-                    throw new IllegalArgumentException("잘못된 커스텀 구분자");
+                    throw new IllegalArgumentException("커스텀 구분자의 길이는 1이어야 합니다.");
                 }
 
                 if(Character.isDigit(delimiter.charAt(0))) {
-                    throw new IllegalArgumentException("잘못된 커스텀 구분자");
+                    throw new IllegalArgumentException("커스텀 구분자는 문자여야 합니다.");
                 }
                 return delimiter;
             }
