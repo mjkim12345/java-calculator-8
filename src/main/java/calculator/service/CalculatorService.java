@@ -15,13 +15,19 @@ public class CalculatorService {
         if(input.equals("")){
             return List.of();
         }
+
         String customDelimiter = findCustomDelimiter(input);
         List<Integer> numbers;
+
         if(customDelimiter == null || customDelimiter.isEmpty()) {
-            numbers = Arrays.stream(input.split(BASIC_DELIMITER))
-                    .map(Integer::parseInt)
-                    .toList();
-            return numbers;
+            try {
+                numbers = Arrays.stream(input.split(BASIC_DELIMITER))
+                        .map(Integer::parseInt)
+                        .toList();
+                return numbers;
+            } catch (Exception e) {
+                throw new IllegalArgumentException("잘못된 문자열 형태");
+            }
         }
         String refactoredInput = input.substring(
                 input.lastIndexOf(END_CUSTOM_DELIMITER)+2);
@@ -33,14 +39,23 @@ public class CalculatorService {
 
     private String findCustomDelimiter(String input) {
         if(input.contains(START_CUSTOM_DELIMITER) && input.contains(END_CUSTOM_DELIMITER)) {
-                int index1 = input.indexOf(START_CUSTOM_DELIMITER)+2;
-                int index2 = input.lastIndexOf(END_CUSTOM_DELIMITER);
+                int startIdx = input.indexOf(START_CUSTOM_DELIMITER)+2;
+                int endIdx = input.lastIndexOf(END_CUSTOM_DELIMITER);
 
-                StringBuffer sb = new StringBuffer();
-                sb.append(input, index1, index2);
+                if(endIdx <0 || endIdx < startIdx) {
+                    throw new IllegalArgumentException("잘못된 커스텀 구분자");
+                }
 
-                String result = sb.toString();
-                return result;
+                String delimiter = input.substring(startIdx, endIdx);
+
+                if(delimiter.length() != 1){
+                    throw new IllegalArgumentException("잘못된 커스텀 구분자");
+                }
+
+                if(Character.isDigit(delimiter.charAt(0))) {
+                    throw new IllegalArgumentException("잘못된 커스텀 구분자");
+                }
+                return delimiter;
             }
         return null;
     }
