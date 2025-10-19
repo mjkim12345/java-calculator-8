@@ -69,6 +69,12 @@ public class CalculatorServiceTest {
     }
 
     @Test
+    void 커스텀_구분자_정의_예외() {
+        assertThatThrownBy(() -> calculatorService.parseNumbers("3//;\n3;2;1"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     void 커스텀_구분자_없을_때_기본_구분자_외_문자_있으면_예외() {
         assertThatThrownBy(() -> calculatorService.parseNumbers("1;2;3"))
                 .isInstanceOf(IllegalArgumentException.class);
