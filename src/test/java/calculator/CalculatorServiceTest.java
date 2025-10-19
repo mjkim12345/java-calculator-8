@@ -4,9 +4,7 @@ package calculator;
 import calculator.domain.Numbers;
 import calculator.service.CalculatorService;
 import calculator.view.InputView;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.assertj.core.api.Assertions;
 
 import java.util.List;
 

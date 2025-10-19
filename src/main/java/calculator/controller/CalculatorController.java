@@ -27,7 +27,7 @@ public class CalculatorController {
             outputView.output(numbers.sum());
         } catch (IllegalArgumentException e){
             outputView.printError("잘못된 입력입니다. " + e.getMessage());
-            return;
+            throw e;
         }
     }
 }
