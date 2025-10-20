@@ -81,6 +81,15 @@ public class CalculatorServiceTest {
     }
 
     @Test
+    void 선행_후행_구분자_입력_시_예외() {
+        assertThatThrownBy(() -> calculatorService.parseNumbers(",1,2,3"))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> calculatorService.parseNumbers("1,2,3,"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     void 음수_포함_시_예외() {
         List<Integer> nums1 = calculatorService.parseNumbers("1:-1:3");
         assertThatThrownBy(() -> new Numbers(nums1))

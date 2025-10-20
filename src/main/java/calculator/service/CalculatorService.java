@@ -20,6 +20,7 @@ public class CalculatorService {
         List<Integer> numbers;
 
         if(customDelimiter == null || customDelimiter.isEmpty()) {
+            validateDelimiterPosition(input);
             try {
                 numbers = Arrays.stream(input.split(BASIC_DELIMITER))
                         .map(Integer::parseInt)
@@ -31,6 +32,7 @@ public class CalculatorService {
         }
         String refactoredInput = input.substring(
                 input.lastIndexOf(END_CUSTOM_DELIMITER)+2);
+        validateDelimiterPosition(refactoredInput);
         numbers = Arrays.stream(refactoredInput.split(BASIC_DELIMITER + "|" + customDelimiter))
                 .map(Integer::parseInt)
                 .toList();
@@ -60,5 +62,17 @@ public class CalculatorService {
             return delimiter;
         }
         return null;
+    }
+
+    private void validateDelimiterPosition(String input) {
+        if(input.isEmpty()){
+            return;
+        }
+        char firstChar = input.charAt(0);
+        char lastChar = input.charAt(input.length()-1);
+
+        if(firstChar == ',' || firstChar == ':' || lastChar == ',' || lastChar == ':'){
+            throw new IllegalArgumentException("구분자 앞뒤에는 항상 숫자가 있어야 합니다.");
+        }
     }
 }
