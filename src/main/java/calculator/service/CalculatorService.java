@@ -15,7 +15,6 @@ public class CalculatorService {
         if(input.equals("")){
             return List.of();
         }
-
         String customDelimiter = findCustomDelimiter(input);
         List<Integer> numbers;
 
@@ -30,10 +29,13 @@ public class CalculatorService {
                 throw new IllegalArgumentException("입력 형식이 잘못되었습니다.");
             }
         }
-        String refactoredInput = input.substring(
-                input.lastIndexOf(END_CUSTOM_DELIMITER)+2);
+        String refactoredInput = input.substring
+                (input.lastIndexOf(END_CUSTOM_DELIMITER)+2);
+
         validateDelimiterPosition(refactoredInput);
-        numbers = Arrays.stream(refactoredInput.split(BASIC_DELIMITER + "|" + customDelimiter))
+
+        numbers = Arrays.stream(refactoredInput
+                .split(BASIC_DELIMITER + "|" + customDelimiter))
                 .map(Integer::parseInt)
                 .toList();
         return numbers;
@@ -56,7 +58,9 @@ public class CalculatorService {
             if(delimiter.length() != 1){
                 throw new IllegalArgumentException("커스텀 구분자의 길이는 1이어야 합니다.");
             }
-            if(Character.isDigit(delimiter.charAt(0))) {
+
+            char delimiterChar = delimiter.charAt(0);
+            if(Character.isDigit(delimiterChar)) {
                 throw new IllegalArgumentException("커스텀 구분자는 문자여야 합니다.");
             }
             return delimiter;
